@@ -4,18 +4,11 @@ class SessionsController < ApplicationController
   
   def create
     # post :create, params: { user: {name: connie.name, password: connie.password} }
-    user = User.find_by(name: params[:user][:name])
+    # user = User.find_by(name: params[:user][:name])
 
-    user = user.try(:authenticate, params[:user][:password])
+    # user = user.try(:authenticate, params[:user][:password])
     
-    # this works
-    # if !user
-    #   redirect_to(controller: "sessions", action: "new")
-    # else
-    #   @user = user
-    #   session[:user_id] = user.id
-    #   redirect_to(controller: "welcome", action: "home")
-    # end
+
   
     @user = User.find_by(name: params[:user][:name])
     return head(:forbidden) unless @user.authenticate(params[:user][:password])
