@@ -15,7 +15,11 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to(controller: "welcome", action: "home")
     end
-
+    
+    @user = User.find_by(name: params[:user][:name])
+    return head(:forbidden) unless @user.authenticate(params[:password])
+    session[:user_id] = @user.id
+    
   end
   
   def destroy
