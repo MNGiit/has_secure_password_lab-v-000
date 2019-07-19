@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
     user = user.try(:authenticate, params[:user][:password])
     
+    # this works
     # if !user
     #   redirect_to(controller: "sessions", action: "new")
     # else
@@ -15,9 +16,9 @@ class SessionsController < ApplicationController
     #   session[:user_id] = user.id
     #   redirect_to(controller: "welcome", action: "home")
     # end
-    
+    # this almost works, but problem with session[:user_id]
     @user = User.find_by(name: params[:user][:name])
-    return head(:forbidden) unless @user.authenticate(params[:password])
+    return head(:forbidden) unless @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
     redirect_to(controller: "welcome", action: "home")
   end
