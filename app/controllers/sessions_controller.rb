@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   
   def create
     # post :create, params: { user: {name: connie.name, password: connie.password} }
-
     @user = User.find_by(name: params[:user][:name])
     return head(:forbidden) unless @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
