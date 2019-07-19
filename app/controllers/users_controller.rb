@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     return redirect_to(controller: 'users', action: 'new') unless @user.save
     session[:user_id] = @user.id
     # redirect_to controller: 'users', action: 'new'
-    redirect_to new_users_path
+    redirect_to new_user_path
   end
   
   private
