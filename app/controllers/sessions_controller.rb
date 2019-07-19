@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
      redirect_to(controller: "welcome", action: "home")
     end
     
+     # post :create, params: { user: {name: connie.name, password: connie.password} }
+    #  expect(session[:user_id]).to eq(connie.id)
+
   end
   
   def destroy
