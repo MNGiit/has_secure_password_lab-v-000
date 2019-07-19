@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
     session.clear
   end
   
-  
+
+
   private
   
   def user_params
