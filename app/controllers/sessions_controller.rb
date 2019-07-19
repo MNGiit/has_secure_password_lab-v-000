@@ -3,20 +3,18 @@ class SessionsController < ApplicationController
   end
   
   def create
+    # post :create, params: { user: {name: connie.name, password: connie.password} }
     user = User.find_by(name: params[:user][:name])
 
     user = user.try(:authenticate, params[:user][:password])
     
     if !user
-     redirect_to(controller: "sessions", action: "new")
+      redirect_to(controller: "sessions", action: "new")
     else
-     @user = user
-     session[:user_id] = user.id
-     redirect_to(controller: "welcome", action: "home")
+      @user = user
+      session[:user_id] = user.id
+      redirect_to(controller: "welcome", action: "home")
     end
-    
-     # post :create, params: { user: {name: connie.name, password: connie.password} }
-    #  expect(session[:user_id]).to eq(connie.id)
 
   end
   
